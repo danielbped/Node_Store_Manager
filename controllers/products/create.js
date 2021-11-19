@@ -9,11 +9,11 @@ module.exports = async (req, res, next) => {
 
     const product = await findByName(name);
 
+    if (product) return res.status(422).json(errorMessage(error.alreadyExists).error); 
+    
     const newProduct = await create({ name, quantity });
     
     if (newProduct.error) return res.status(422).json(newProduct.error);
-
-    if (product) return res.status(422).json(errorMessage(error.alreadyExists).error); 
 
     const response = {
       _id: newProduct.insertedId,

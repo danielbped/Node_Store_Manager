@@ -4,4 +4,5 @@ module.exports = {
   quantityIsNotANumber: '"quantity" must be a number',
   alreadyExists: 'Product already exists',
   invalidId: 'Wrong id format',
+  notFound: 'Can\'t find products with this id',
 };

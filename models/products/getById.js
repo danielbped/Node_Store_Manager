@@ -3,7 +3,7 @@ const connection = require('../connection');
 
 module.exports = async (id) => {
   const product = await connection().then(
-    (db) => db.collection('StoreManager').findOne(ObjectId(id)),
+    (db) => db.collection('products').findOne(ObjectId(id)),
   );
 
   return product;
