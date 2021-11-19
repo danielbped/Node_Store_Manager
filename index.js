@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const routerProducts = require('./controllers/products/router');
+const root = require('./controllers/root');
 
 const error = require('./middlewares/error');
 
@@ -14,7 +14,7 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use('/', routerProducts);
+app.use('/', root);
 
 app.use(error);
 
