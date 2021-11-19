@@ -1,8 +1,12 @@
 const express = require('express');
-const create = require('./create');
+const createProduct = require('./create');
+const getAllProducts = require('./getAll');
+const getProductById = require('./getById');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/products', create);
+router.get('/products', getAllProducts);
+router.get('/products/:id', getProductById);
+router.post('/products', createProduct);
 
-module.exports = { router };
+module.exports = router;

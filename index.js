@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const routerProducts = require('./controllers/products/create');
+const routerProducts = require('./controllers/products/router');
 
 const error = require('./middlewares/error');
 
