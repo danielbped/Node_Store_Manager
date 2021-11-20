@@ -1,24 +1,11 @@
 const errorMessage = require('../errorMessage');
 const errors = require('../../utils/errorMessages');
 
-const isQuantityValid = (quantity) => {
-  if (!quantity || quantity < 0) return false;
-
-  return true;
-};
-
-const isQuantityANumber = (quantity) => {
-  const isNumberRegex = (/\d/).test(quantity);
-  if (!isNumberRegex) return false;
-
-  return true;
-};
-
-const isNameValid = (name) => {
-  if (!name || name.length < 5 || typeof name !== 'string') return false;
-
-  return true;
-};
+const {
+  isNameValid,
+  isQuantityValid,
+  isQuantityANumber,
+} = require('../utils/validations');
 
 module.exports = (product) => {
   const { name, quantity } = product;

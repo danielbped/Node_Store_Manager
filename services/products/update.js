@@ -1,5 +1,5 @@
 const update = require('../../models/products/update');
-const isValidId = require('../../middlewares/product/isValidId');
+const { isValidId } = require('../../middlewares/utils/validations');
 const isProductValid = require('../../middlewares/product/isValidProduct');
 
 module.exports = async (product) => {

@@ -1,5 +1,7 @@
-const isValidId = require('../../middlewares/product/isValidId');
+const { isValidId } = require('../../middlewares/utils/validations');
 const update = require('../../services/products/update');
+const errorMessage = require('../../middlewares/errorMessage');
+const errors = require('../../utils/errorMessages');
 
 module.exports = async (req, res, next) => {
   try {
@@ -7,7 +9,7 @@ module.exports = async (req, res, next) => {
 
     const { name, quantity } = req.body;
 
-    if (isValidId(id).error) return res.status(422).json(isValidId(id).error);
+    if (!isValidId(id)) return res.status(422).json(errorMessage(errors.invalidId));
 
     const product = { id, name, quantity };
 
