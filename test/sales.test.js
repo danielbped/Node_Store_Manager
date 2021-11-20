@@ -6,7 +6,7 @@ const mongoDbUrl = `mongodb://${process.env.HOST || 'mongodb'}:27017/StoreManage
 const url = 'http://localhost:3000';
 const invalidId = 99999;
 
-describe.only('5 - Crie um endpoint para cadastrar vendas', () => {
+describe('5 - Crie um endpoint para cadastrar vendas', () => {
   let connection;
   let db;
 
@@ -571,7 +571,7 @@ describe('7 - Crie um endpoint para atualizar uma venda', () => {
   });
 });
 
-describe('8 - Crie um endpoint para deletar uma venda', () => {
+describe.skip('8 - Crie um endpoint para deletar uma venda', () => {
   let connection;
   let db;
 
@@ -664,7 +664,7 @@ describe('8 - Crie um endpoint para deletar uma venda', () => {
   });
 });
 
-describe('9 - Atualize a quantidade de produtos', () => {
+describe.skip('9 - Atualize a quantidade de produtos', () => {
   let connection;
   let db;
 
@@ -774,7 +774,7 @@ describe('9 - Atualize a quantidade de produtos', () => {
   });
 });
 
-describe('10 - Valide a quantidade de produtos', () => {
+describe.skip('10 - Valide a quantidade de produtos', () => {
   let connection;
   let db;
 

@@ -6,12 +6,10 @@ const {
   isQuantityANumber,
 } = require('../utils/validations');
 
-module.exports = (sale) => {
-  const { quantity } = sale;
+module.exports = (sales) => sales.map(({ quantity }) => {
+    const isSaleQuantityValid = () => isQuantityValid(quantity) && isQuantityANumber(quantity);
 
-  const isSaleQuantityValid = () => isQuantityValid(quantity) && isQuantityANumber(quantity);
+    if (!isSaleQuantityValid()) return errorMessage(errors.invalidSale);
 
-  if (!isSaleQuantityValid()) return errorMessage(errors.invalidSale);
-
-  return true;
-};
+    return true;
+  }).find((sale) => sale.error) || true;
