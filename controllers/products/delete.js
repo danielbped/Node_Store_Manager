@@ -9,10 +9,10 @@ module.exports = async (req, res, next) => {
     const { id } = req.params;
 
     if (!isValidId(id)) return res.status(422).json(errorMessage(errors.invalidId).error);
+    
+    const product = getById(id);
 
     await deleteProduct(id);
-
-    const product = getById(id);
 
     res.status(200).json(product);
   } catch (err) {
