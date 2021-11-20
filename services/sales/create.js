@@ -1,12 +1,10 @@
 const create = require('../../models/sales/create');
 const isValidSale = require('../../middlewares/sales/isValidSale');
 
-module.exports = async (...sales) => Promise.all(
-  sales.map(
-    async (sale) => {
-      if (isValidSale(sale).error) return isValidSale(sale);
+module.exports = async (sales) => {
+  const response = sales.map((sale) => isValidSale(sale));
 
-      return create(sale);
-    },
-  ),
-);
+  if (response[0].error) return response[0];
+
+  return create(sales);
+};

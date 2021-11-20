@@ -1,10 +1,8 @@
 const connection = require('../connection');
 
-module.exports = async (sale) => {
-  const { productId, quantity } = sale;
-
+module.exports = async (sales) => {
   const newSale = await connection().then(
-    (db) => db.collection('sales').insertOne({ productId, quantity }),
+    (db) => db.collection('sales').insertOne({ itensSold: sales }),
   );
 
   return newSale;
