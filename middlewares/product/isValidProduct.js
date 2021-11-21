@@ -10,7 +10,7 @@ const {
 module.exports = async (product) => {
   const { name, quantity } = product;
 
-  if (!isNameValid(name)) return errorMessage(errors.invalidName);
+  if (!await isNameValid(name)) return errorMessage(errors.invalidName);
 
   if (!await isQuantityValid(quantity)) return errorMessage(errors.invalidQuantity);
   

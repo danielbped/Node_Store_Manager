@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
     }
     
     const newProduct = await create({ name, quantity });
-    
+
     if (newProduct.error) return res.status(statusCode.UNPROCESSABLE_ENTITY).json(newProduct.error);
 
     const response = {

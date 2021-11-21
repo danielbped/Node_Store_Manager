@@ -14,7 +14,7 @@ const isQuantityANumber = async (quantity) => {
   return true;
 };
 
-const isNameValid = (name) => {
+const isNameValid = async (name) => {
   if (!name || name.length < 5 || typeof name !== 'string') return false;
 
   return true;
