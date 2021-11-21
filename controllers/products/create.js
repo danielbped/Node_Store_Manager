@@ -11,8 +11,8 @@ module.exports = async (req, res, next) => {
     const product = await findByName(name);
 
     if (product) {
-      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(errorMessage(error.alreadyExists)
-      .error);
+      return res.status(statusCode.UNPROCESSABLE_ENTITY)
+        .json(errorMessage(error.alreadyExists).error);
     }
     
     const newProduct = await create({ name, quantity });

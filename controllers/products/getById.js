@@ -9,12 +9,16 @@ module.exports = async (req, res, next) => {
     const { id } = req.params;
 
     if (!isValidId(id)) {
-      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(errorMessage(error.invalidId).error);
+      return res.status(statusCode.UNPROCESSABLE_ENTITY)
+        .json(errorMessage(error.invalidId).error);
     }
 
     const product = await getById(id);
 
-    if (!product) return res.status(statusCode.NOT_FOUND).json(errorMessage(error.notFound));
+    if (!product) {
+      return res.status(statusCode.NOT_FOUND)
+        .json(errorMessage(error.notFound));
+    }
 
     res.status(statusCode.OK).json(product);
   } catch (err) {

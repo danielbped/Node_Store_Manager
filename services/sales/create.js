@@ -2,7 +2,7 @@ const create = require('../../models/sales/create');
 const isValidSale = require('../../middlewares/sales/isValidSale');
 
 module.exports = async (sales) => {
-  const response = isValidSale(sales);
+  const response = await isValidSale(sales);
 
   if (response.error) return response;
 

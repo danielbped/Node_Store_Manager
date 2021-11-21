@@ -7,7 +7,7 @@ const error = require('../../utils/errorMessages');
 module.exports = async ({ id, sale }) => {
   if (!isValidId(id)) return errorMessage(error.invalidSale);
 
-  if (isValidSale(sale).error) return isValidSale(sale);
+  if (typeof isValidSale(sale) === 'object') return isValidSale(sale);
 
   return update(sale);
 };

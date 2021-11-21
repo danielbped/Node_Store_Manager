@@ -774,7 +774,7 @@ describe.skip('9 - Atualize a quantidade de produtos', () => {
   });
 });
 
-describe.skip('10 - Valide a quantidade de produtos', () => {
+describe('10 - Valide a quantidade de produtos', () => {
   let connection;
   let db;
 

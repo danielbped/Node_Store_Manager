@@ -35,4 +35,8 @@ module.exports = {
     code: 'not_found',
     message: 'Sale not found',
   },
+  stockProblem: {
+    code: 'stock_problem',
+    message: 'Such amount is not permitted to sell',
+  },
 };

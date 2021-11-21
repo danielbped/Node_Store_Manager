@@ -4,12 +4,17 @@ const errors = require('../../utils/errorMessages');
 const {
   isQuantityValid,
   isQuantityANumber,
+  isProductAvailable,
 } = require('../utils/validations');
 
-module.exports = (sales) => sales.map(({ quantity }) => {
-    const isSaleQuantityValid = () => isQuantityValid(quantity) && isQuantityANumber(quantity);
+module.exports = async (sales) => sales.map(async ({ productId, quantity }) => {
+  const isSaleQuantityValid = async () => (
+    await isQuantityValid(quantity) && isQuantityANumber(quantity)
+  );
 
-    if (!isSaleQuantityValid()) return errorMessage(errors.invalidSale);
+  if (!await isSaleQuantityValid()) return errorMessage(errors.invalidSale);
 
-    return true;
-  }).find((sale) => sale.error) || true;
+  if (!await isProductAvailable(productId, quantity)) return errorMessage(errors.stockProblem);
+
+  return true;
+}).find(async (sale) => sale.error) || true;

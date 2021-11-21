@@ -12,7 +12,8 @@ module.exports = async (req, res, next) => {
     const updatedSale = await update(saleWithId);
 
     if (updatedSale.error) {
-      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(updatedSale.error);
+      return res.status(statusCode.UNPROCESSABLE_ENTITY)
+        .json(updatedSale.error);
     }
 
     res.status(statusCode.OK).json({

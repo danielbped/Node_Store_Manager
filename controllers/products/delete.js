@@ -10,7 +10,8 @@ module.exports = async (req, res, next) => {
     const { id } = req.params;
 
     if (!isValidId(id)) {
-      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(errorMessage(errors.invalidId).error);
+      return res.status(statusCode.UNPROCESSABLE_ENTITY)
+        .json(errorMessage(errors.invalidId).error);
     }
     
     const product = getById(id);

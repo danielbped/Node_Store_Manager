@@ -1,12 +1,13 @@
 const { ObjectId } = require('mongodb');
+const getProductById = require('../../services/products/getById');
 
-const isQuantityValid = (quantity) => {
+const isQuantityValid = async (quantity) => {
   if (!quantity || quantity <= 0) return false;
 
   return true;
 };
 
-const isQuantityANumber = (quantity) => {
+const isQuantityANumber = async (quantity) => {
   const isNumberRegex = (/\d/).test(quantity);
   if (!isNumberRegex) return false;
 
@@ -25,9 +26,16 @@ const isValidId = (id) => {
   return true;
 };
 
+const isProductAvailable = async (productId, quantity) => {
+  const { quantity: productQuantity } = await getProductById(productId);
+
+  return productQuantity > quantity;
+};
+
 module.exports = {
   isQuantityANumber,
   isNameValid,
   isQuantityValid,
   isValidId,
+  isProductAvailable,
 };
