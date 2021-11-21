@@ -1,3 +1,4 @@
+const statusCode = require('http-status-codes').StatusCodes;
 const update = require('../../services/sales/update');
 
 module.exports = async (req, res, next) => {
@@ -10,9 +11,11 @@ module.exports = async (req, res, next) => {
 
     const updatedSale = await update(saleWithId);
 
-    if (updatedSale.error) return res.status(422).json(updatedSale.error);
+    if (updatedSale.error) {
+      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(updatedSale.error);
+    }
 
-    res.status(200).json({
+    res.status(statusCode.OK).json({
       _id: id,
       itensSold: sale,
     });

@@ -1,3 +1,4 @@
+const statusCode = require('http-status-codes').StatusCodes;
 const { isValidId } = require('../../middlewares/utils/validations');
 const update = require('../../services/products/update');
 const errorMessage = require('../../middlewares/errorMessage');
@@ -9,15 +10,19 @@ module.exports = async (req, res, next) => {
 
     const { name, quantity } = req.body;
 
-    if (!isValidId(id)) return res.status(422).json(errorMessage(errors.invalidId));
+    if (!isValidId(id)) {
+      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(errorMessage(errors.invalidId));
+    }
 
     const product = { id, name, quantity };
 
     const updatedProduct = await update(product);
 
-    if (updatedProduct.error) return res.status(422).json(updatedProduct.error);
+    if (updatedProduct.error) {
+      return res.status(statusCode.UNPROCESSABLE_ENTITY).json(updatedProduct.error);
+    }
 
-    res.status(200).json(product);
+    res.status(statusCode.OK).json(product);
   } catch (err) {
     next(err);
   }

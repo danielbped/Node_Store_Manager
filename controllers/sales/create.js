@@ -1,3 +1,4 @@
+const statusCode = require('http-status-codes').StatusCodes;
 const create = require('../../services/sales/create');
 
 module.exports = async (req, res, next) => {
@@ -6,7 +7,7 @@ module.exports = async (req, res, next) => {
 
     const itensSold = await create(sales);
 
-    if (itensSold.error) return res.status(422).json(itensSold.error);
+    if (itensSold.error) return res.status(statusCode.UNPROCESSABLE_ENTITY).json(itensSold.error);
 
     res.status(200).json({
       _id: itensSold.insertedId,
