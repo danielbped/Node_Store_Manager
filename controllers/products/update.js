@@ -10,8 +10,8 @@ module.exports = async (req, res, next) => {
     const product = { id, name, quantity };
 
     const updatedProduct = await update(product);
-
-    if (updatedProduct.error) {
+    
+    if (typeof (updatedProduct.error) === 'object') {
       return res.status(statusCode.UNPROCESSABLE_ENTITY)
         .json(updatedProduct.error);
     }

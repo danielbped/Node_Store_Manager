@@ -7,14 +7,14 @@ const {
   isQuantityANumber,
 } = require('../utils/validations');
 
-module.exports = (product) => {
+module.exports = async (product) => {
   const { name, quantity } = product;
 
   if (!isNameValid(name)) return errorMessage(errors.invalidName);
 
-  if (!isQuantityValid(quantity)) return errorMessage(errors.invalidQuantity);
-
-  if (!isQuantityANumber(quantity)) return errorMessage(errors.quantityIsNotANumber);
+  if (!await isQuantityValid(quantity)) return errorMessage(errors.invalidQuantity);
+  
+  if (!await isQuantityANumber(quantity)) return errorMessage(errors.quantityIsNotANumber);
 
   return true;
 };

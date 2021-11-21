@@ -7,7 +7,7 @@ const error = require('../../utils/errorMessages');
 module.exports = async (product) => {
   const { id } = product;
   if (!isValidId(id)) return errorMessage(error.invalidSale);
-  if (typeof isValidProduct(product) === 'object') return isValidProduct(product);
+  if (typeof await isValidProduct(product) === 'object') return isValidProduct(product);
 
   return update(product);
 };

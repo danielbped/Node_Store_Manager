@@ -18,4 +18,4 @@ app.use('/', root);
 
 app.use(error);
 
-app.listen(port, () => `App listening on port ${port}`);
+app.listen(port, () => console.log(`App listening on port ${port}`));
