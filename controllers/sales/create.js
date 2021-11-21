@@ -1,5 +1,6 @@
 const statusCode = require('http-status-codes').StatusCodes;
 const create = require('../../services/sales/create');
+// const getProductById = require('../../services/products/getById');
 
 module.exports = async (req, res, next) => {
   try {

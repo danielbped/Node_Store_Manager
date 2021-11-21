@@ -1,8 +1,8 @@
-module.exports = (error) => ({
+module.exports = ({ code, message }) => ({
   error: {
     err: {
-      code: 'invalid_data',
-      message: error,
+      code,
+      message,
     },
   },
 });
