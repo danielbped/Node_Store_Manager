@@ -12,3 +12,8 @@
 - [x] Crie um endpoint para deletar uma venda
 - [x] Atualize a quantidade de produtos
 - [x] Valide a quantidade de produtos
+
+### Bônus
+- [x] Escreva testes para seus models
+- [ ] Escreva testes para seus services
+- [ ] Escreva testes para seus controllers
