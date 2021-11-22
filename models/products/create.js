@@ -1,9 +1,9 @@
-const connection = require('../connection');
+const { getConnection } = require('../connection');
 
 module.exports = async (product) => {
   const { name, quantity } = product;
 
-  const newProduct = await connection().then(
+  const newProduct = await getConnection().then(
     (db) => db.collection('products').insertOne({ name, quantity }),
   );
 
