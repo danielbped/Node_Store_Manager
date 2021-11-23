@@ -112,7 +112,7 @@ describe('Testa camada de Model de Produtos', () => {
 
       expect(response).to.be.an('array');
     });
-  })
+  });
 
   describe('Testa getById', () => {
     it('retorna um objeto', async () => {
