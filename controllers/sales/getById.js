@@ -1,13 +1,13 @@
 const statusCode = require('http-status-codes').StatusCodes;
-const getById = require('../../services/sales/getById');
+const getSaleByIdService = require('../../services/sales/getById');
 const error = require('../../utils/errorMessages');
 const errorMessage = require('../../middlewares/errorMessage');
 
-module.exports = async (req, res, next) => {
+const getSaleByIdController = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const sale = await getById(id);
+    const sale = await getSaleByIdService(id);
 
     if (!sale) {
       return res.status(statusCode.NOT_FOUND)
@@ -18,4 +18,8 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.get('/:id', getSaleByIdController);
 };

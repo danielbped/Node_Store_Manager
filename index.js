@@ -14,8 +14,8 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-app.use('/', root);
+root(app);
 
-app.use(error);
+error(app);
 
 app.listen(port, () => console.log(`App listening on port ${port}`));

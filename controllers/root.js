@@ -5,7 +5,9 @@ const products = require('./products/router');
 
 const root = express.Router({ mergeParams: true });
 
-root.use('/sales', sales);
-root.use('/products', products);
+sales(root);
+products(root);
 
-module.exports = root;
+module.exports = (app) => {
+  app.use('/', root);
+};

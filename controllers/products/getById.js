@@ -1,10 +1,10 @@
 const statusCode = require('http-status-codes').StatusCodes;
 const { isValidId } = require('../../middlewares/utils/validations');
-const getById = require('../../services/products/getById');
+const getByIdService = require('../../services/products/getById');
 const error = require('../../utils/errorMessages');
 const errorMessage = require('../../middlewares/errorMessage');
 
-module.exports = async (req, res, next) => {
+const getProductByIdController = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
         .json(errorMessage(error.invalidId).error);
     }
 
-    const product = await getById(id);
+    const product = await getByIdService(id);
 
     if (!product) {
       return res.status(statusCode.NOT_FOUND)
@@ -24,4 +24,8 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.get('/:id', getProductByIdController);
 };

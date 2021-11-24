@@ -1,11 +1,11 @@
 const statusCode = require('http-status-codes').StatusCodes;
-const create = require('../../services/sales/create');
+const createSaleService = require('../../services/sales/create');
 
-module.exports = async (req, res, next) => {
+const createSaleController = async (req, res, next) => {
   try {
     const sales = req.body;
 
-    const itensSold = await create(sales);
+    const itensSold = await createSaleService(sales);
 
     if (itensSold.error) {
       return res.status(
@@ -21,4 +21,8 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.post('/', createSaleController);
 };

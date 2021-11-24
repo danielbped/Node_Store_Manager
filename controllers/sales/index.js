@@ -1,13 +1,13 @@
-const create = require('./create');
-const update = require('./update');
-const getAll = require('./getAll');
-const getById = require('./getById');
+const createSale = require('./create');
+const updateSale = require('./update');
+const getAllSales = require('./getAll');
+const getSaleById = require('./getById');
 const deleteSale = require('./delete');
 
 module.exports = {
-  create,
-  update,
+  createSale,
+  updateSale,
   deleteSale,
-  getAll,
-  getById,
+  getAllSales,
+  getSaleById,
 };

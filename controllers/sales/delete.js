@@ -1,11 +1,11 @@
 const statusCode = require('http-status-codes').StatusCodes;
 const { isValidId } = require('../../middlewares/utils/validations');
-const deleteSale = require('../../services/sales/delete');
-const getById = require('../../services/sales/getById');
+const deleteSaleService = require('../../services/sales/delete');
+const getSaleByIdService = require('../../services/sales/getById');
 const errorMessage = require('../../middlewares/errorMessage');
 const errors = require('../../utils/errorMessages');
 
-module.exports = async (req, res, next) => {
+const deleteSaleController = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -14,12 +14,16 @@ module.exports = async (req, res, next) => {
         .json(errorMessage(errors.invalidSaleId).error);
     }
 
-    const sale = getById(id);
+    const sale = getSaleByIdService(id);
 
-    await deleteSale(id);
+    await deleteSaleService(id);
 
     res.status(statusCode.OK).json(sale);
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.delete('/:id', deleteSaleController);
 };

@@ -1,7 +1,7 @@
 const statusCode = require('http-status-codes').StatusCodes;
-const update = require('../../services/products/update');
+const updateProductService = require('../../services/products/update');
 
-module.exports = async (req, res, next) => {
+const updateProductController = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
 
     const product = { id, name, quantity };
 
-    const updatedProduct = await update(product);
+    const updatedProduct = await updateProductService(product);
     
     if (typeof (updatedProduct.error) === 'object') {
       return res.status(statusCode.UNPROCESSABLE_ENTITY)
@@ -20,4 +20,8 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.put('/:id', updateProductController);
 };

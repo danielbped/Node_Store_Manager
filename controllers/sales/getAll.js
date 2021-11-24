@@ -1,12 +1,16 @@
 const statusCode = require('http-status-codes').StatusCodes;
-const getAll = require('../../services/sales/getAll');
+const getAllSalesService = require('../../services/sales/getAll');
 
-module.exports = async (_req, res, next) => {
+const getAllSalesController = async (_req, res, next) => {
   try {
-    const sales = await getAll();
+    const sales = await getAllSalesService();
 
     res.status(statusCode.OK).json({ sales });
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.get('/', getAllSalesController);
 };

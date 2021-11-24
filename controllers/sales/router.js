@@ -1,16 +1,14 @@
 const express = require('express');
-const createSale = require('./create');
-const getAllSales = require('./getAll');
-const getSaleById = require('./getById');
-const updateSale = require('./update');
-const deleteSale = require('./delete');
+const saleControllers = require('./index');
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/', getAllSales);
-router.get('/:id', getSaleById);
-router.put('/:id', updateSale);
-router.delete('/:id', deleteSale);
-router.post('/', createSale);
+saleControllers.getAllSales(router);
+saleControllers.getSaleById(router);
+saleControllers.updateSale(router);
+saleControllers.deleteSale(router);
+saleControllers.createSale(router);
 
-module.exports = router;
+module.exports = (root) => {
+  root.use('/sales', router);
+};

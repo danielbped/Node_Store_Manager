@@ -1,14 +1,14 @@
 const statusCode = require('http-status-codes').StatusCodes;
 const create = require('../../services/products/create');
-const findByName = require('../../services/products/findByName');
+const findByNameService = require('../../services/products/findByName');
 const error = require('../../utils/errorMessages');
 const errorMessage = require('../../middlewares/errorMessage');
 
-module.exports = async (req, res, next) => {
+const createProductController = async (req, res, next) => {
   try {
     const { name, quantity } = req.body;
 
-    const product = await findByName(name);
+    const product = await findByNameService(name);
 
     if (product) {
       return res.status(statusCode.UNPROCESSABLE_ENTITY)
@@ -29,4 +29,8 @@ module.exports = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+module.exports = (router) => {
+  router.post('/', createProductController);
 };
